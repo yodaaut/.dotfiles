@@ -159,4 +159,4 @@ setup_gitconfig
 install_dotfiles
 
 echo ''
-success_all 'Everythins is installed!'
+success_all 'Everything is installed!'
