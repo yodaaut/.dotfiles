@@ -52,7 +52,7 @@ setup_gitconfig () {
 				-e "s/USERNAME/$git_username/g"										\
 				-e "s/AUTHOREMAIL/$git_authoremail/g"							\
 				-e "s/GIT_CREDENTIAL_HELPER/$git_credential/g"		\
-				-e "s/GIT_PROXY/$git_proxy/g"											\
+				-e "s#GIT_PROXY#$git_proxy#g"											\
 				git/gitconfig.local.symlink.example > git/gitconfig.local.symlink
 
 		success 'gitconfig.local'
