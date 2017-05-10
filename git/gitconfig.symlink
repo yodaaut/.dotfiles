@@ -40,7 +40,6 @@
 
 	# Show files ignored by git:
 	ign = ls-files -o -i --exclude-standard
+
 [push]
 	default = matching
-[user]
-	signingkey = 96BFAEF944F0B118
