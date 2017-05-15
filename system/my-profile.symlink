@@ -15,11 +15,10 @@ else
 fi
 
 
-
 # User specific environment and startup programs
 #
 # check if $HOME/.local/bin exists in $PATH, otherwise add it
-if [[ :$PATH: == *:"$HOME/.local/bin":* ]]; then
+if ! [[ :$PATH: == *:"$HOME/.local/bin":* ]]; then
 	PATH=$PATH:$HOME/.local/bin
 fi
 
@@ -33,19 +32,19 @@ export PATH
 if hash docker 2>/dev/null; then
 	. ~/.docker-completion.sh
 else
-	echo >&2 "gnupg-agent not installed.";
+	echo >&2 "docker not installed.";
 fi
 
 #check if docker-compose is installed, then source command-completion
-if hash docker 2>/dev/null; then
-. ~/.docker-compose-completion.sh
+if hash docker-compose 2>/dev/null; then
+	. ~/.docker-compose-completion.sh
 else
-	echo >&2 "gnupg-agent not installed.";
+	echo >&2 "docker-compose not installed.";
 fi
 
 #check if docker-machine is installed, then source command-completion
-if hash docker 2>/dev/null; then
-. ~/.docker-machine-completion.sh
+if hash docker-machine 2>/dev/null; then
+	. ~/.docker-machine-completion.sh
 else
-	echo >&2 "gnupg-agent not installed.";
+	echo >&2 "docker-machine not installed.";
 fi
