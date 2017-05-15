@@ -30,21 +30,48 @@ export PATH
 
 #check if docker is installed, then source command-completion
 if hash docker 2>/dev/null; then
-	. ~/.docker-completion.sh
+	case $(ps -p $$|tail -1|awk '{print $NF}') in
+		zsh )
+			. ~/.docker/_docker
+			;;
+		bash )
+			. ~/.docker/docker-completion.sh
+			;;
+		* )
+			;;
+	esac
 else
-	echo >&2 "docker not installed.";
+	echo >&2 '"docker" not installed.';
 fi
 
 #check if docker-compose is installed, then source command-completion
 if hash docker-compose 2>/dev/null; then
-	. ~/.docker-compose-completion.sh
+	case $(ps -p $$|tail -1|awk '{print $NF}') in
+		zsh )
+			. ~/.docker/_docker-compose
+			;;
+		bash )
+			. ~/.docker/docker-compose-completion.sh
+			;;
+		* )
+			;;
+	esac
 else
-	echo >&2 "docker-compose not installed.";
+	echo >&2 '"docker-compose" not installed.';
 fi
 
 #check if docker-machine is installed, then source command-completion
 if hash docker-machine 2>/dev/null; then
-	. ~/.docker-machine-completion.sh
+	case $(ps -p $$|tail -1|awk '{print $NF}') in
+		zsh )
+			. ~/.docker/_docker-machine
+			;;
+		bash )
+			. ~/.docker/docker-machine-completion.sh
+			;;
+		* )
+			;;
+	esac
 else
-	echo >&2 "docker-machine not installed.";
+	echo >&2 '"docker-machine" not installed.';
 fi
