@@ -1,0 +1,51 @@
+if hash gpg-agent 2>/dev/null; then
+	# Invoke GnuPG-Agent the first time we login.
+	# Does '~/.gpg-agent-info' exist and points to gpg-agent process accepting
+	# signals?
+	
+	if test -f $HOME/.gpg-agent-info && \
+		kill -0 `cut -d: -f 2 $HOME/.gpg-agent-info` 2>/dev/null; then
+		GPG_AGENT_INFO=`cat $HOME/.gpg-agent-info | cut -c 16-`
+	else
+		# No, gpg-agent not available; start gpg-agent
+		eval `gpg-agent --daemon --no-grab --write-env-file $HOME/.gpg-agent-info`
+	fi
+else
+	echo >&2 "gnupg-agent not installed.";
+fi
+
+
+
+# User specific environment and startup programs
+#
+# check if $HOME/.local/bin exists in $PATH, otherwise add it
+if [[ :$PATH: == *:"$HOME/.local/bin":* ]]; then
+	PATH=$PATH:$HOME/.local/bin
+fi
+
+# exports
+#
+export GPG_TTY=`tty`
+export GPG_AGENT_INFO
+export PATH
+
+#check if docker is installed, then source command-completion
+if hash docker 2>/dev/null; then
+	. ~/.docker-completion.sh
+else
+	echo >&2 "gnupg-agent not installed.";
+fi
+
+#check if docker-compose is installed, then source command-completion
+if hash docker 2>/dev/null; then
+. ~/.docker-compose-completion.sh
+else
+	echo >&2 "gnupg-agent not installed.";
+fi
+
+#check if docker-machine is installed, then source command-completion
+if hash docker 2>/dev/null; then
+. ~/.docker-machine-completion.sh
+else
+	echo >&2 "gnupg-agent not installed.";
+fi
