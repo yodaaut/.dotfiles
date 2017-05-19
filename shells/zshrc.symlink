@@ -13,6 +13,24 @@ setopt histignorealldups sharehistory
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
+bindkey '^[^[[C' emacs-forward-word											# [ALT-Right Arrow]
+bindkey '^[^[[D' emacs-backward-word										# [ALT-Left Arrow]
+
+# Using Putty, set keys for HOME, END, DELETE, ...
+if [[ "${TERM}" == "putty"* ]]; then
+	if [[ "${terminfo[khome]}" != "" ]]; then
+		bindkey "${terminfo[khome]}" beginning-of-line			# [Home] - Go to beginning of line
+	fi
+	if [[ "${terminfo[kend]}" != "" ]]; then
+		bindkey "${terminfo[kend]}" end-of-line							# [End] - Go to end of line
+	fi
+	if [[ "${terminfo[kcbt]}" != "" ]]; then
+		bindkey "${terminfo[kcbt]}" reverse-menu-complete		# [Shift-TAB] - move through the completion menu backwards
+	fi
+	if [[ "${terminfo[kdch1]}" != "" ]]; then
+		bindkey "${terminfo[kdch1]}" delete-char						# [Delete] - delete forward
+	fi
+fi
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000
