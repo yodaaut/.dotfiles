@@ -3,7 +3,6 @@
 usage () {
 
 cat << USAGE
-
 $(basename $0) IMAGE [TAG]
 List all tags for a Docker image on a remote registry.
 
@@ -18,7 +17,6 @@ TAG   - list all php tags containing apache:
 specialcase:
       - list specific tag number has to be escaped:
 	dockertags centos 7\\\\.
-			
 USAGE
 exit
 }
