@@ -43,14 +43,14 @@ setup_gitconfig () {
 		read -e git_authorname
 		user ' - What'"'"'s your github user name?'
 		read -e git_username
-		user ' - Is your author email private? (yes|no)'
+		user ' - Is your author email private? (add your ID or leave empty)'
 		read -e git_private
-		if ! [ "$git_private" == "yes" ]
+		if [ "$git_private" == "" ]
 		then
 			user ' - What'"'"'s your github author email?'
 			read -e git_authoremail
 		else
-			git_authoremail="${git_username}@users.noreply.github.com"
+			git_authoremail="${git_private}+${git_username}@users.noreply.github.com"
 		fi
 		user ' - What'"'"'s your proxy? (If you don'"'"'t have one, hit Enter)'
 		read -e git_proxy
