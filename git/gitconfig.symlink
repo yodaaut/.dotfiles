@@ -43,3 +43,9 @@
 
 [push]
 	default = matching
+[user]
+	signingkey = 88C056D21130AB9A
+[gpg]
+	program = gpg
+[commit]
+	gpgsign = true
