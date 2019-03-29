@@ -2,6 +2,7 @@
 
 alias ls='ls --color'
 alias ll='ls -al'
+alias vi='vim'
 export EDITOR=vim
 export WORDCHARS='*?[]~=&;!#$%^(){}<>'
 #export WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>' #Originalwert
@@ -65,7 +66,7 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 if [ -f ~/todo ]; then
-	bash ~/todo
+	cat ~/todo
 fi
 
 . ~/.my-profile
