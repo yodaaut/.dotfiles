@@ -17,9 +17,9 @@ fi
 
 # User specific environment and startup programs
 #
-# check if $HOME/.local/bin exists in $PATH, otherwise add it
-if ! [[ :$PATH: == *:"$HOME/.local/bin":* ]]; then
-	PATH=$PATH:$HOME/.local/bin
+# check if $HOME/.local_bin/bin exists in $PATH, otherwise add it
+if ! [[ :$PATH: == *:"$HOME/.local_bin/bin":* ]]; then
+	PATH=$PATH:$HOME/.local_bin/bin
 fi
 
 # exports
