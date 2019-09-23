@@ -8,7 +8,8 @@ if hash gpg-agent 2>/dev/null; then
 		GPG_AGENT_INFO=`cat $HOME/.gpg-agent-info | cut -c 16-`
 	else
 		# No, gpg-agent not available; start gpg-agent
-		eval `gpg-agent --daemon --no-grab --write-env-file $HOME/.gpg-agent-info`
+		eval `gpg-agent --daemon --no-grab`
+		# eval `gpg-agent --daemon --no-grab --write-env-file $HOME/.gpg-agent-info`
 	fi
 else
 	echo >&2 "gnupg-agent not installed.";
@@ -75,3 +76,8 @@ if hash docker-machine 2>/dev/null; then
 else
 	echo >&2 '"docker-machine" not installed.';
 fi
+
+#check if init-nvm.sh exists, then source command-completion
+#if test -f /usr/share/nvm/init-nvm.sh; then
+#	source /usr/share/nvm/init-nvm.sh
+#fi
