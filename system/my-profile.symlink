@@ -81,3 +81,6 @@ fi
 #if test -f /usr/share/nvm/init-nvm.sh; then
 #	source /usr/share/nvm/init-nvm.sh
 #fi
+
+# turn carriage returns into newlines
+stty icrnl
