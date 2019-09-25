@@ -1,5 +1,5 @@
-[include]
-  path = ~/.gitconfig.local
+[user]
+	useConfigOnly = true
 [http]
 	sslVerify = true
 
@@ -43,9 +43,11 @@
 
 [push]
 	default = matching
-[user]
-	signingkey = 4C7946FC17FC8B2B
 [gpg]
 	program = gpg
 [commit]
 	gpgsign = true
+[include]
+	path = ~/.gitconfig.github
+[includeIf "gitdir/i:~/git/mario/"]
+	path = ~/.gitconfig.mario
