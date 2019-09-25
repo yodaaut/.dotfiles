@@ -35,7 +35,7 @@ fail () {
 setup_gitconfig () {
 	local git_host=$1 git_config_name=${2:-"github"} git_url=${3:-""}
 	local git_private=
-	if ! [ -f git/gitconfig.local.symlink ]
+	if ! [ -f git/gitconfig.${git_config_name}.symlink ]
 	then
 		info 'configure '"gitconfig.${git_config_name}"''
 
