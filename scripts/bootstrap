@@ -83,8 +83,8 @@ setup_gitconfig () {
 			echo "[includeIF \"gitdir/i:~/git/${git_config_name}/\"]" >> git/gitconfig_includes.symlink
 			echo "	path = ~/.gitconfig_${git_config_name}" >> git/gitconfig_includes.symlink
 		else
-			sed -i "1s/^/[include]\n" git/gitconfig_includes.symlink
-			sed -i "2s/^/\tpath = ~\/.gitconfig_${git_config_name}" git/gitconfig_includes.symlink
+			sed -i "1s/^/[include]\n/" git/gitconfig_includes.symlink
+			sed -i "2s/^/\tpath = ~\/.gitconfig_${git_config_name}\n/" git/gitconfig_includes.symlink
 		fi
 
 		success "gitconfig_${git_config_name}"
