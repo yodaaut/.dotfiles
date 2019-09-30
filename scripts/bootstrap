@@ -58,7 +58,7 @@ setup_gitconfig () {
 			git_private="$(curl -L -s "https://api.github.com/users/${git_username}"|grep \"id\":|cut -d ":" -f 2|tr -d " "|tr -d ",")"
 			git_authoremail="${git_private}+${git_username}@users.noreply.github.com"
 		fi
-		git_signingkey="$(gpg --list-keys --with-colons ${git_authoremail} | awk -F: '/^pub:/ { print  }')"
+		git_signingkey="$(gpg --list-keys --with-colons ${git_authoremail} | awk -F: '/^pub:/ { print $5 }')"
 		if [ "$git_signingkey" == "" ]
 		then
 			user ' - What'"'"'s your '${git_config_name}' signingkey?'
