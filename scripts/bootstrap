@@ -82,7 +82,9 @@ setup_gitconfig () {
 			echo "hub-new-repo = \"!REPO=\$(basename \$PWD) GHUSER=\$(git config --get github.user) PROXY=\$(git config --get http.proxy);echo 'creating \\\"'\$REPO'\\\" on ${git_url}? - Then type your OTP:';read OTP;curl -x \\\"\$PROXY\\\" -u \\\"\$GHUSER\\\" -H \\\"accept: application/json\\\" -H \\\"Content-Type: application/json\\\" -H \\\"X-${git_host}-OTP: \$OTP\\\" -d {\\\\\\\"name\\\\\\\":\\\\\\\"\$REPO\\\\\\\"} ${git_url}/api/v1/user/repos ;git remote add origin ${git_url}/\$GHUSER/\$REPO.git;git push origin master\"" >> git/gitconfig_${git_config_name}.symlink
 			echo "[includeIF \"gitdir/i:~/git/${git_config_name}/\"]" >> git/gitconfig_includes.symlink
 			echo "	path = ~/.gitconfig_${git_config_name}" >> git/gitconfig_includes.symlink
-
+		else
+			echo "[include]" >> git/gitconfig_includes.symlink
+			echo "	path = ~/.gitconfig_includes" >> git/gitconfig_includes.symlink
 		fi
 
 		success "gitconfig_${git_config_name}"
