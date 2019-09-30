@@ -35,15 +35,15 @@ fail () {
 setup_gitconfig () {
 	local git_host=$1 git_config_name=${2:-"github"} git_url=${3:-""}
 	local git_private=
-	if ! [ -f git/gitconfig.${git_config_name}.symlink ]
+	if ! [ -f git/gitconfig_${git_config_name}.symlink ]
 	then
-		info 'configure '"gitconfig.${git_config_name}"''
+		info 'configure '"gitconfig_${git_config_name}"''
 
 		git_credential='netrc'
 
-		user ' - What'"'"'s your '${git_config_name}' author name?'
+		user ' - What'"'"'s your "'${git_config_name}'" author name?'
 		read -e git_authorname
-		user ' - What'"'"'s your '${git_config_name}' user name?'
+		user ' - What'"'"'s your "'${git_config_name}'" user name?'
 		read -e git_username
 		if [ "$git_config_name" == "github" ]
 		then
@@ -52,16 +52,18 @@ setup_gitconfig () {
 		fi
 		if ! [ "$git_private" == "yes" ]
 		then
-			user ' - What'"'"'s your '${git_config_name}' author email?'
+			user ' - What'"'"'s your "'${git_config_name}'" author email?'
 			read -e git_authoremail
 		else
 			git_private="$(curl -L -s "https://api.github.com/users/${git_username}"|grep \"id\":|cut -d ":" -f 2|tr -d " "|tr -d ",")"
 			git_authoremail="${git_private}+${git_username}@users.noreply.github.com"
 		fi
 		git_signingkey="$(gpg --list-keys --with-colons ${git_authoremail} | awk -F: '/^pub:/ { print $5 }')"
+		sleep 1
+		info "found key ${git_signingkey}"
 		if [ "$git_signingkey" == "" ]
 		then
-			user ' - What'"'"'s your '${git_config_name}' signingkey?'
+			user ' - What'"'"'s your "'${git_config_name}'" signingkey?'
 			read -e git_signingkey
 		fi
 
@@ -74,13 +76,16 @@ setup_gitconfig () {
 				-e "s/AUTHOREMAIL/$git_authoremail/g"							\
 				-e "s/GIT_CREDENTIAL_HELPER/$git_credential/g"		\
 				-e "s#GIT_PROXY#$git_proxy#g"											\
-				git/gitconfig.local.symlink.example > git/gitconfig.${git_config_name}.symlink
+				git/gitconfig_local.symlink.example > git/gitconfig_${git_config_name}.symlink
 		if ! [ "$git_config_name" == "github" ]
 		then
-			echo "hub-new-repo = \"!REPO=\$(basename \$PWD) GHUSER=\$(git config --get github.user) PROXY=\$(git config --get http.proxy);echo 'creating \\\"'\$REPO'\\\" on ${git_url}? - Then type your OTP:';read OTP;curl -x \\\"\$PROXY\\\" -u \\\"\$GHUSER\\\" -H \\\"accept: application/json\\\" -H \\\"Content-Type: application/json\\\" -H \\\"X-${git_host}-OTP: \$OTP\\\" -d {\\\\\\\"name\\\\\\\":\\\\\\\"\$REPO\\\\\\\"} ${git_url}/api/v1/user/repos ;git remote add origin ${git_url}/\$GHUSER/\$REPO.git;git push origin master\"" >> git/gitconfig.${git_config_name}.symlink
+			echo "hub-new-repo = \"!REPO=\$(basename \$PWD) GHUSER=\$(git config --get github.user) PROXY=\$(git config --get http.proxy);echo 'creating \\\"'\$REPO'\\\" on ${git_url}? - Then type your OTP:';read OTP;curl -x \\\"\$PROXY\\\" -u \\\"\$GHUSER\\\" -H \\\"accept: application/json\\\" -H \\\"Content-Type: application/json\\\" -H \\\"X-${git_host}-OTP: \$OTP\\\" -d {\\\\\\\"name\\\\\\\":\\\\\\\"\$REPO\\\\\\\"} ${git_url}/api/v1/user/repos ;git remote add origin ${git_url}/\$GHUSER/\$REPO.git;git push origin master\"" >> git/gitconfig_${git_config_name}.symlink
+			echo "[includeIF \"gitdir/i:~/git/${git_config_name}/\"]" >> git/gitconfig_includes.symlink
+			echo "	path = ~/.gitconfig_${git_config_name}" >> git/gitconfig_includes.symlink
+
 		fi
 
-		success "gitconfig.${git_config_name}"
+		success "gitconfig_${git_config_name}"
 	fi
 
 }
