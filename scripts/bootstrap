@@ -84,7 +84,7 @@ setup_gitconfig () {
 			echo "	path = ~/.gitconfig_${git_config_name}" >> git/gitconfig_includes.symlink
 		else
 			echo "[include]" >> git/gitconfig_includes.symlink
-			echo "	path = ~/.gitconfig_includes" >> git/gitconfig_includes.symlink
+			echo "	path = ~/.gitconfig_${git_config_name}" >> git/gitconfig_includes.symlink
 		fi
 
 		success "gitconfig_${git_config_name}"
