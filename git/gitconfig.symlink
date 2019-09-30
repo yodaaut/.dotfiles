@@ -48,6 +48,4 @@
 [commit]
 	gpgsign = true
 [include]
-	path = ~/.gitconfig.github
-[includeIf "gitdir/i:~/git/mario/"]
-	path = ~/.gitconfig.mario
+	path = ~/.gitconfig_includes
