@@ -23,6 +23,10 @@
 [core]
 	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
   editor = vim
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
 
 [alias]
 	hub-new-repo = "!REPO=$(basename $PWD) GHUSER=$(git config --get github.user) PROXY=$(git config --get http.proxy);echo 'creating \"'$REPO'\" on Github? - Then type your OTP:';read OTP;curl -x \"$PROXY\" -u \"$GHUSER\" -H \"X-GitHub-OTP: $OTP\" -d {\\\"name\\\":\\\"$REPO\\\"} https://api.github.com/user/repos ;git remote add origin https://github.com/$GHUSER/$REPO.git;git push origin master"
