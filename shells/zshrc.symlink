@@ -8,7 +8,7 @@ export WORDCHARS='*?[]~=&;!#$%^(){}<>'
 #export WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>' #Originalwert
 autoload -Uz promptinit
 promptinit
-prompt adam1
+prompt spaceship
 
 setopt histignorealldups sharehistory
 
