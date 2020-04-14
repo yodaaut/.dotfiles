@@ -6,6 +6,10 @@ alias vi='vim'
 export EDITOR=vim
 export WORDCHARS='*?[]~=&;!#$%^(){}<>'
 #export WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>' #Originalwert
+
+SPACESHIP_BATTERY_SHOW=always
+SPACESHIP_JOBS_SYMBOL=
+
 autoload -Uz promptinit
 promptinit
 prompt spaceship
