@@ -60,3 +60,12 @@ endif
 
 " YAML
 autocmd FileType yaml setlocal ai ts=2 sw=2 et nu cuc
+
+" markdown
+autocmd BufNewFile,BufRead *.md
+	\ set filetype=markdown |
+	\ set tabstop=2 |
+	\ set softtabstop=2 |
+	\ set shiftwidth=2 |
+	\ set expandtab |
+	\ set autoindent |
