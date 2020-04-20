@@ -1,21 +1,21 @@
-[include]
-  path = ~/.gitconfig.local
+[user]
+	useConfigOnly = true
 [http]
 	sslVerify = true
 
 [color "branch"]
 	current = yellow reverse
 	local = yellow
-	remote = green
+	remote = 120
 [color "diff"]
 	meta = yellow bold
 	frag = magenta bold
 	old = red bold
-	new = green bold
+	new = 120 bold
 	whitespace = red reverse
 [color "status"]
 	added = yellow
-	changed = green
+	changed = 120
 	untracked = cyan
 
 [color]
@@ -23,6 +23,10 @@
 [core]
 	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
   editor = vim
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
 
 [alias]
 	hub-new-repo = "!REPO=$(basename $PWD) GHUSER=$(git config --get github.user) PROXY=$(git config --get http.proxy);echo 'creating \"'$REPO'\" on Github? - Then type your OTP:';read OTP;curl -x \"$PROXY\" -u \"$GHUSER\" -H \"X-GitHub-OTP: $OTP\" -d {\\\"name\\\":\\\"$REPO\\\"} https://api.github.com/user/repos ;git remote add origin https://github.com/$GHUSER/$REPO.git;git push origin master"
@@ -31,7 +35,7 @@
 	br = branch
 	co = checkout
 	df = diff
-	dc = diff --cachd
+	dc = diff --cached
 	lg = log -p
 	who = remote -v
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
@@ -43,9 +47,9 @@
 
 [push]
 	default = matching
-[user]
-	signingkey = 4C7946FC17FC8B2B
 [gpg]
 	program = gpg
 [commit]
 	gpgsign = true
+[include]
+	path = ~/.gitconfig_includes

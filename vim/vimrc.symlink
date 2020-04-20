@@ -57,3 +57,15 @@ if &diff
 	highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
 	highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
 endif
+
+" YAML
+autocmd FileType yaml setlocal ai ts=2 sw=2 et nu cuc
+
+" markdown
+autocmd BufNewFile,BufRead *.md
+	\ set filetype=markdown |
+	\ set tabstop=2 |
+	\ set softtabstop=2 |
+	\ set shiftwidth=2 |
+	\ set expandtab |
+	\ set autoindent |

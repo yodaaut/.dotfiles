@@ -8,7 +8,8 @@ if hash gpg-agent 2>/dev/null; then
 		GPG_AGENT_INFO=`cat $HOME/.gpg-agent-info | cut -c 16-`
 	else
 		# No, gpg-agent not available; start gpg-agent
-		eval `gpg-agent --daemon --no-grab --write-env-file $HOME/.gpg-agent-info`
+		eval `gpg-agent --daemon --no-grab`
+		# eval `gpg-agent --daemon --no-grab --write-env-file $HOME/.gpg-agent-info`
 	fi
 else
 	echo >&2 "gnupg-agent not installed.";
@@ -28,50 +29,62 @@ export GPG_TTY=`tty`
 export GPG_AGENT_INFO
 export PATH
 
-#check if docker is installed, then source command-completion
-if hash docker 2>/dev/null; then
-	case $(ps -p $$|tail -1|awk '{print $NF}') in
-		zsh )
-			. ~/.docker/_docker
-			;;
-		bash )
-			. ~/.docker/docker-completion.sh
-			;;
-		* )
-			;;
-	esac
-else
-	echo >&2 '"docker" not installed.';
-fi
+######################################
+# Deprecate any docker completion		 #
+# Delete any docker completion later #
+######################################
+###check if docker is installed, then source command-completion
+##if hash docker 2>/dev/null; then
+##	case $(ps -p $$|tail -1|awk '{print $NF}') in
+##		zsh )
+##			. ~/.docker/_docker
+##			;;
+##		bash )
+##			. ~/.docker/docker-completion.sh
+##			;;
+##		* )
+##			;;
+##	esac
+##else
+##	echo >&2 '"docker" not installed.';
+##fi
+##
+###check if docker-compose is installed, then source command-completion
+##if hash docker-compose 2>/dev/null; then
+##	case $(ps -p $$|tail -1|awk '{print $NF}') in
+##		zsh )
+##			. ~/.docker/_docker-compose
+##			;;
+##		bash )
+##			. ~/.docker/docker-compose-completion.sh
+##			;;
+##		* )
+##			;;
+##	esac
+##else
+##	echo >&2 '"docker-compose" not installed.';
+##fi
+##
+###check if docker-machine is installed, then source command-completion
+##if hash docker-machine 2>/dev/null; then
+##	case $(ps -p $$|tail -1|awk '{print $NF}') in
+##		zsh )
+##			. ~/.docker/_docker-machine
+##			;;
+##		bash )
+##			. ~/.docker/docker-machine-completion.sh
+##			;;
+##		* )
+##			;;
+##	esac
+##else
+##	echo >&2 '"docker-machine" not installed.';
+##fi
 
-#check if docker-compose is installed, then source command-completion
-if hash docker-compose 2>/dev/null; then
-	case $(ps -p $$|tail -1|awk '{print $NF}') in
-		zsh )
-			. ~/.docker/_docker-compose
-			;;
-		bash )
-			. ~/.docker/docker-compose-completion.sh
-			;;
-		* )
-			;;
-	esac
-else
-	echo >&2 '"docker-compose" not installed.';
-fi
+#check if init-nvm.sh exists, then source command-completion
+#if test -f /usr/share/nvm/init-nvm.sh; then
+#	source /usr/share/nvm/init-nvm.sh
+#fi
 
-#check if docker-machine is installed, then source command-completion
-if hash docker-machine 2>/dev/null; then
-	case $(ps -p $$|tail -1|awk '{print $NF}') in
-		zsh )
-			. ~/.docker/_docker-machine
-			;;
-		bash )
-			. ~/.docker/docker-machine-completion.sh
-			;;
-		* )
-			;;
-	esac
-else
-	echo >&2 '"docker-machine" not installed.';
-fi
+# turn carriage returns into newlines
+stty icrnl
