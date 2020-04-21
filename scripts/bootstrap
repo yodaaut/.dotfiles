@@ -67,15 +67,11 @@ setup_gitconfig () {
 			read -e git_signingkey
 		fi
 
-		user ' - What'"'"'s your proxy? (If you don'"'"'t have one, hit Enter)'
-		read -e git_proxy
-
 		sed -e "s/AUTHORNAME/$git_authorname/g"								\
 				-e "s/USERNAME/$git_username/g"										\
 				-e "s/GIT_SIGNINGKEY/$git_signingkey/g"						\
 				-e "s/AUTHOREMAIL/$git_authoremail/g"							\
 				-e "s/GIT_CREDENTIAL_HELPER/$git_credential/g"		\
-				-e "s#GIT_PROXY#$git_proxy#g"											\
 				git/gitconfig_local.symlink.example > git/gitconfig_${git_config_name}.symlink
 		if ! [ -f git/gitconfig_includes.symlink ]
 		then
