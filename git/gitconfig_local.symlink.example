@@ -6,6 +6,4 @@
 	signingkey = GIT_SIGNINGKEY
 [credential]
 	helper = GIT_CREDENTIAL_HELPER
-[http]
-	proxy = GIT_PROXY
 [alias]

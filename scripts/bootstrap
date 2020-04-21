@@ -27,9 +27,8 @@ success_all () {
 }
 
 fail () {
-	printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+	printf "\r\033[2K  [\033[0;31m!!\033[0m] $1\n"
 	echo ''
-	exit
 }
 
 setup_gitconfig () {
@@ -67,15 +66,11 @@ setup_gitconfig () {
 			read -e git_signingkey
 		fi
 
-		user ' - What'"'"'s your proxy? (If you don'"'"'t have one, hit Enter)'
-		read -e git_proxy
-
 		sed -e "s/AUTHORNAME/$git_authorname/g"								\
 				-e "s/USERNAME/$git_username/g"										\
 				-e "s/GIT_SIGNINGKEY/$git_signingkey/g"						\
 				-e "s/AUTHOREMAIL/$git_authoremail/g"							\
 				-e "s/GIT_CREDENTIAL_HELPER/$git_credential/g"		\
-				-e "s#GIT_PROXY#$git_proxy#g"											\
 				git/gitconfig_local.symlink.example > git/gitconfig_${git_config_name}.symlink
 		if ! [ -f git/gitconfig_includes.symlink ]
 		then
@@ -92,6 +87,8 @@ setup_gitconfig () {
 		fi
 
 		success "gitconfig_${git_config_name}"
+	else
+		fail "gitconfig_${git_config_name} already exists!"
 	fi
 
 }
