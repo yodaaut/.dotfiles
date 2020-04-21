@@ -29,6 +29,7 @@ export GPG_TTY=`tty`
 export GPG_AGENT_INFO
 export PATH
 alias git='git -c "http.proxy=${http_proxy}"'
+alias less='less -R'
 
 ######################################
 # Deprecate any docker completion		 #
