@@ -3,6 +3,7 @@
 alias ls='ls --color'
 alias ll='ls -al'
 alias vi='vim'
+alias less='less -R'
 export EDITOR=vim
 export WORDCHARS='*?[]~=&;!#$%^(){}<>'
 #export WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>' #Originalwert
