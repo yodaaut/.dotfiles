@@ -32,6 +32,7 @@ export PATH
 # alias
 #
 alias git=git -c "http.proxy=${http_proxy}"
+alias ssh-xterm="TERM=xterm ssh"
 
 ######################################
 # Deprecate any docker completion		 #
