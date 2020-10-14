@@ -87,9 +87,9 @@ alias ssh-xterm="TERM=xterm ssh"
 ##fi
 
 #check if init-nvm.sh exists, then source command-completion
-#if test -f /usr/share/nvm/init-nvm.sh; then
-#	source /usr/share/nvm/init-nvm.sh
-#fi
+if test -f /usr/share/nvm/init-nvm.sh; then
+	source /usr/share/nvm/init-nvm.sh
+fi
 
 # turn carriage returns into newlines
 stty icrnl
