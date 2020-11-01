@@ -3,7 +3,7 @@ set background=dark
 set cindent
 set title
 
-set wm=2
+set wm=0
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
