@@ -29,7 +29,7 @@ autoload -Uz promptinit
 promptinit
 prompt spaceship
 
-setopt histignorealldups sharehistory
+setopt histignorealldups sharehistory complete_aliases
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
