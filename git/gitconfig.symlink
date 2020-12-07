@@ -51,5 +51,7 @@
 	program = gpg
 [commit]
 	gpgsign = true
+[merge]
+  ff = false
 [include]
 	path = ~/.gitconfig_includes
