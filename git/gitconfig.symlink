@@ -53,5 +53,7 @@
 	gpgsign = true
 [merge]
   ff = false
+[pull]
+  ff = true
 [include]
 	path = ~/.gitconfig_includes
