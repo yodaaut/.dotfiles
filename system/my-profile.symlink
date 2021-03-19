@@ -29,6 +29,7 @@ export GPG_TTY=`tty`
 export GPG_AGENT_INFO
 export PATH
 export BROWSER=/usr/bin/chromium
+export VAGRANT_HOME=/opt/VMs/vagrant.d/
 
 # alias
 #
