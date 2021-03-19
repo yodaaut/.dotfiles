@@ -1,2 +1,4 @@
 git/gitconfig_*.symlink
 !git/gitconfig_local.symlink.example
+docker.symlink/config.json
+docker.symlink/.buildNodeID
