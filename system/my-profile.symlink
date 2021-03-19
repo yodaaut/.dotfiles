@@ -35,6 +35,7 @@ export VAGRANT_HOME=/opt/VMs/vagrant.d/
 #
 alias git="git -c http.proxy=${http_proxy}"
 alias ssh-xterm="TERM=xterm ssh"
+alias vagrant="TERM=xterm vagrant"
 
 ######################################
 # Deprecate any docker completion		 #
