@@ -45,6 +45,8 @@
 	# Show files ignored by git:
 	ign = ls-files -o -i --exclude-standard
 
+[init]
+  defaultBranch = main
 [push]
 	default = matching
 [gpg]
