@@ -133,10 +133,12 @@ def gnupg_export(fpr, directory, encrypt=False):
 
 
 if __name__ == "__main__":
-    parser = ArgumentParser()
+    parser = ArgumentParser(description="Encrypted backup of gpg-keys",
+        epilog='Example:\
+        %(prog)s -e "" /tmp')
     group = parser.add_argument_group('group')
     group.add_argument('fpr',
-                        help="fingerprint of key to export.")
+                        help="fingerprint of key to export or emptystring for all.")
     group.add_argument('directory',
                         help="directory to export to.")
     group.add_argument('-e', '--encrypt', action="store_true",
