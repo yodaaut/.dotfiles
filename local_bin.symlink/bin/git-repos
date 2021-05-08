@@ -28,7 +28,7 @@ if [ $# -lt 1 ]; then
 fi
 
 #						 jq -C '((if (.detail|length) > 0 then .detail else empty end),(.results[]?|.["name"]))'|			\
-REPOS=`curl -L -s "https://api.github.com/users/${USER}/repos"| \
+REPOS=`curl -L -s "https://api.github.com/users/${USER}/repos?per_page=100&sort=created"| \
 				jq -C .[].clone_url`
 #||fail ${USER} "not found")|sort`
 
