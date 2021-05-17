@@ -14,6 +14,8 @@ set expandtab
 
 " Press F2 to toggle color column
 nnoremap <silent><F2> :call <SID>ToggleColorColumn()<cr>
+" Press F3 to toggle paste mode
+set pastetoggle=<F3>
 
 set colorcolumn=0
 set textwidth=0	
