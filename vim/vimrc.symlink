@@ -69,3 +69,12 @@ autocmd BufNewFile,BufRead *.md
 	\ set shiftwidth=2 |
 	\ set expandtab |
 	\ set autoindent |
+
+" ReStructuredText
+autocmd BufNewFile,BufRead *.rst
+	\ set filetype=rst |
+	\ set softtabstop=3 |
+	\ set shiftwidth=3 |
+	\ set expandtab |
+	\ set autoindent |
+  \ call s:ToggleColorColumn()
